@@ -8,11 +8,15 @@ import { HashLocationStrategy,
 import { UserEditTemplateComponent }  from "./user/edit-template/user-edit-template.component";
 import { UserComponent }              from "./user/profile/user.component";
 
+import { PhoneCreateComponent }        from "./phone/create/phone-create.component";
+
+
 const routes: Routes = [
   { path: '', component: UserListComponent },
   { path: 'users', component: UserListComponent },
   { path: 'create', component: UserCreateComponent },
   { path: 'edit/:userId', component: UserEditComponent },
+  { path: 'add-phone/:userId', component: PhoneCreateComponent },
   { path: 'users/:userId', component: UserComponent },
   { path: 'users2/:userId', component: UserEditTemplateComponent }
 ];

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {UserModel} from "./user/user.model";
+import {UserModel} from "./user.model";
 import {Observable} from "rxjs";
 
 const BASE_URI = './api/v1/users';

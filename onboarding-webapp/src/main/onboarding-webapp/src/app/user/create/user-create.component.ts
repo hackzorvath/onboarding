@@ -1,7 +1,7 @@
 import { Component, OnInit }      from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService }            from '../../user.service';
+import { UserService }            from '../user.service';
 import { Subscription }           from "rxjs";
 import { debounceTime, delay }    from "rxjs/internal/operators";
 
@@ -51,24 +51,11 @@ export class UserCreateComponent implements OnInit {
     })
     this.router.navigate(['/']);
 
-//     this.newUser = this.newUserForm.getRawValue() as UserModel;
-//     console.log(this.newUser);
-//     console.log("Did we get here?");
-//     this.userService.save(this.newUser).subscribe(data => {
-//       console.log(data);
-//     console.log("Here?");
-//       this.userCreated();
-//     }/*,
-//         err => {
+//     err => {
 //           this.errors=err.error;
 //           console.log(this.errors);
 //     }*/);
   }
-
-//  userCreated() {
-//    alert("User created successfully!");
-//    this.router.navigate(['/']);
-//  }
 
   private createFormGroup(): FormGroup {
     return this.formBuilder.group({
@@ -77,16 +64,4 @@ export class UserCreateComponent implements OnInit {
       'lastName': ''
     });
   }
-  /* private  newUserForm = this.formBuilder.group({
-    username: [''],
-    firstName: [''],
-    lastName: [''],
-      phoneList: this.formBuilder.array([
-        this.formBuilder.group({
-          phoneNumber: [''],
-          primary:['true']
-          })
-        ])
-  });*/
-
 }

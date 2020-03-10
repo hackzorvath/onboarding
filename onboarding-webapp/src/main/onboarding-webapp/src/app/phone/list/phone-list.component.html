@@ -1,0 +1,40 @@
+<div class="card-body p-4">
+  <div class="d-flex py-3">
+    <h4 class="mr-auto">Phones: </h4>
+    <button class="btn btn-primary" type="button" (click)="addPhone()">Add Phone</button>
+  </div>
+
+  <table class="table m-0 table-sm user-list table-hover">
+
+    <thead>
+    <tr>
+      <th class="text-center">Phone Number</th>
+      <th class="text-center">Verified?</th>
+      <th class="text-center">Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let phone of phones">
+      <td class="text-center">{{ phone.phoneNumber }}</td>
+      <td class="text-center">
+        <div *ngIf="phone.verified"> &#9989; </div>
+        <div *ngIf="!phone.verified"> &#10060; </div>
+      </td>
+      <td class="text-center">
+        <div class="btn-group btn-group-sm" role="group">
+          <button (click)="editUser(user); $event.preventDefault()"
+                  type="button" class="btn btn-warning">Edit</button>
+          <button (click)="deleteUser(user); $event.preventDefault()"
+                  type="button" class="btn btn-danger">Delete</button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!phones?.length" class="text-center p-5">
+    <h5>No Phones Found</h5>
+    <p style="font-size:12px;">There are currently no phones for this user.</p>
+  </div>
+</div>

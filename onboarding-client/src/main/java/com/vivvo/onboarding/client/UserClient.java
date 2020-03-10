@@ -67,16 +67,28 @@ public class UserClient {
 
     // Phone methods
 
-    public PhoneDto createPhone(PhoneDto dto) {
-        return phoneTarget(dto.getUserId())
+    public List<PhoneDto> findPhonesByUserId(UUID userId) {
+        return phoneTarget(userId)
                 .request()
-                .post(Entity.json(dto), PhoneDto.class);
+                .get(new GenericType<List<PhoneDto>>(){});
     }
 
-    public PhoneDto updatePhone(PhoneDto dto) {
-        return phoneTarget(dto.getUserId(), dto.getPhoneId())
+    public PhoneDto getPhone(UUID userId, UUID phoneId) {
+        return phoneTarget(userId, phoneId)
                 .request()
-                .put(Entity.json(dto), PhoneDto.class);
+                .get(PhoneDto.class);
+    }
+
+    public PhoneDto createPhone(UUID userId, PhoneDto pdto) {
+        return phoneTarget(pdto.getUserId())
+                .request()
+                .post(Entity.json(pdto), PhoneDto.class);
+    }
+
+    public PhoneDto updatePhone(UUID userId, PhoneDto pdto) {
+        return phoneTarget(pdto.getUserId(), pdto.getPhoneId())
+                .request()
+                .put(Entity.json(pdto), PhoneDto.class);
     }
 
     public void deletePhone(UUID userId, UUID phoneId) {
@@ -85,11 +97,7 @@ public class UserClient {
                 .delete(Void.class);
     }
 
-    public PhoneDto getPhone(UUID userId, UUID phoneId) {
-        return phoneTarget(userId, phoneId)
-                .request()
-                .get(PhoneDto.class);
-    }
+
 
     public PhoneDto beginVerification(UUID userId, UUID phoneId) {
         return phoneTarget(userId, phoneId)

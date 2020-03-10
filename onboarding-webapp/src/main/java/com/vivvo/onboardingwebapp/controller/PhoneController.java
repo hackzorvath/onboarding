@@ -1,12 +1,5 @@
 package com.vivvo.onboardingwebapp.controller;
 
-public class PhoneController {
-}
-
-
-/*
-* package com.vivvo.onboardingwebapp.controller;
-
 import com.vivvo.onboarding.client.UserClient;
 import com.vivvo.onboarding.dto.PhoneDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +11,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/users/{userId}/phones")
-public class WebappPhoneController {
+public class PhoneController {
 
     @Autowired
     private UserClient userClient;
@@ -63,4 +56,3 @@ public class WebappPhoneController {
         return userClient.verifyPhone(userId, phoneId, verificationCode);
     }
 }
-* */

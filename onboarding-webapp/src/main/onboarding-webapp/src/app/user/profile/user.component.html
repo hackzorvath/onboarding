@@ -11,17 +11,16 @@
         <h6>ID: {{ user?.userId }}</h6>
       </div>
       <div class="align-self-center">
-        <button class="btn btn-primary" (click)="editUser()">Edit</button>
+        <button class="btn btn-warning" (click)="editUser()">Edit</button>
         <button class="btn btn-danger ml-2" (click)="deleteUser()">Delete</button>
       </div>
     </div>
   </div>
 
 </div>
-<!--
+
 <div class="container py-3">
   <div class="card card-shadow">
-    <app-phone-list [phones]='phones' [userId]='user?.userId'></app-phone-list>
+    <app-phone-list></app-phone-list>
   </div>
 </div>
--->

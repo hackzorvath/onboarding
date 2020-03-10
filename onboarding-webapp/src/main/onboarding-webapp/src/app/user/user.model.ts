@@ -1,4 +1,4 @@
-import { PhoneModel } from "../model/phone.model"
+import { PhoneModel } from "../phone/phone.model"
 
 export class UserModel {
   userId: string;

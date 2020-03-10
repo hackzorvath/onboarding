@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../../user.service';
+import { UserService } from '../user.service';
 import { UserModel } from '../user.model';
+import { PhoneModel } from '../../phone/phone.model';
 
 @Component({
   selector: 'app-user',
@@ -9,7 +10,9 @@ import { UserModel } from '../user.model';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
+
   user: UserModel;
+  phones: PhoneModel[];
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
@@ -19,9 +22,10 @@ export class UserComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.userService.get(params['userId']).subscribe(data => {
         this.user = data;
-        //this.phones = this.user.phoneList;
+        this.phones = this.user.phones;
       });
     });
+
 
   }
 
