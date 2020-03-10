@@ -1,0 +1,57 @@
+<div *ngIf="!loadingSubscription.closed">
+  <h1>I AM LOADING</h1>
+</div>
+
+<div [formGroup]="formGroup">
+  <div class="card p-4">
+
+    <!-- THIS IS TEMPORARY; should pull from get request -->
+    <div class="py-2 px-1">
+      <h5 class="color-text d-flex">
+        <div class ="mr-auto">
+          Edit User <b>{{ user?.username }}</b>
+        </div>
+      </h5>
+      <hr>
+
+      <!-- No need for error checking; if a field is blank, don't update in component -->
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" formControlName="username"
+               placeholder="{{ user?.username }}">
+      </div>
+
+        <!-- Inputs for username (above), and first/last name (below) -->
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" class="form-control" id="firstName" formControlName="firstName"
+                     placeholder="{{ user?.firstName }}">
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" class="form-control" id="lastName" formControlName="lastName"
+                     placeholder="{{ user?.lastName }}">
+
+            </div>
+          </div>
+
+        <!-- Save button; calls save function in the typescript file -->
+        </div>
+        <div>
+          <hr>
+          <button class="btn btn-block btn-primary" (click)="save()">Save</button>
+          <button role="button" routerLink="/users" class="btn btn-block btn-secondary">
+            Back to All Users
+          </button>
+          <button role="button" (click)="backToUser()" class="btn btn-block btn-secondary">
+            Back to {{ user?.firstName }} {{ user?.lastName }} ({{ user?.username }})
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

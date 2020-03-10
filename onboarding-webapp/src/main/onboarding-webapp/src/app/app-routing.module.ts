@@ -1,16 +1,22 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {UserListComponent} from "./user-list/user-list.component";
-import {UserEditComponent} from "./user-edit/user-edit.component";
-import {HashLocationStrategy, LocationStrategy} from "@angular/common";
-import {UserEditTemplateComponent} from "./user-edit-template/user-edit-template.component";
+import { NgModule }                   from '@angular/core';
+import { RouterModule, Routes }       from '@angular/router';
+import { UserListComponent }          from "./user/list/user-list.component";
+import { UserCreateComponent }        from "./user/create/user-create.component";
+import { UserEditComponent }          from "./user/edit/user-edit.component";
+import { HashLocationStrategy,
+          LocationStrategy }          from "@angular/common";
+import { UserEditTemplateComponent }  from "./user/edit-template/user-edit-template.component";
+import { UserComponent }              from "./user/profile/user.component";
 
 const routes: Routes = [
-  {path: 'users', component: UserListComponent},
-  {path: 'users/:userId', component: UserEditComponent},
-  {path: 'users2/:userId', component: UserEditTemplateComponent}
+  { path: '', component: UserListComponent },
+  { path: 'users', component: UserListComponent },
+  { path: 'create', component: UserCreateComponent },
+  { path: 'edit/:userId', component: UserEditComponent },
+  { path: 'users/:userId', component: UserComponent },
+  { path: 'users2/:userId', component: UserEditTemplateComponent }
 ];
-;
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
@@ -18,6 +24,4 @@ const routes: Routes = [
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}]
 })
 export class AppRoutingModule {
-
-
 }

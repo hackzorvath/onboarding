@@ -3,18 +3,28 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserListComponent } from './user-list/user-list.component';
-import { UserEditComponent } from './user-edit/user-edit.component';
-import {HttpClientModule} from "@angular/common/http";
+
+import { UserListComponent } from './user/list/user-list.component';
+import { UserCreateComponent } from './user/create/user-create.component';
+import { UserEditComponent } from './user/edit/user-edit.component';
+import { HttpClientModule } from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { UserEditTemplateComponent } from './user-edit-template/user-edit-template.component';
+import { UserEditTemplateComponent } from './user/edit-template/user-edit-template.component';
+import { UserComponent } from './user/profile/user.component';
+import { PhoneCreateComponent } from './phone-create/phone-create.component';
+import { PhoneListComponent } from './phone-list/phone-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
+    UserCreateComponent,
     UserEditComponent,
-    UserEditTemplateComponent
+    UserEditTemplateComponent,
+    UserCreateComponent,
+    UserComponent,
+    PhoneCreateComponent,
+    PhoneListComponent
   ],
   imports: [
     BrowserModule,

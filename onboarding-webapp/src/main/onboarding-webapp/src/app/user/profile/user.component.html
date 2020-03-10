@@ -1,0 +1,27 @@
+<div class="container-fluid bg-faded">
+  <div class="container py-3">
+    <button class="btn btn-secondary" type="button" routerLink="/users">Back to all users</button>
+  </div>
+
+  <div class="card card-body">
+    <div class="d-flex py-3">
+      <div class="px-4 mr-auto">
+        <h3>Name: {{ user?.firstName }} {{ user?.lastName }}</h3>
+        <h5>Username: {{ user?.username }}</h5>
+        <h6>ID: {{ user?.userId }}</h6>
+      </div>
+      <div class="align-self-center">
+        <button class="btn btn-primary" (click)="editUser()">Edit</button>
+        <button class="btn btn-danger ml-2" (click)="deleteUser()">Delete</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!--
+<div class="container py-3">
+  <div class="card card-shadow">
+    <app-phone-list [phones]='phones' [userId]='user?.userId'></app-phone-list>
+  </div>
+</div>
+-->

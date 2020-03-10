@@ -1,0 +1,44 @@
+<div class="card card-shadow p-2">
+  <div class="card-body p-4">
+    <div class="d-flex py-3">
+      <h4 class="mr-auto">All Users</h4>
+      <!--
+      <button class="btn btn-secondary" type="button" (click)="refreshUserList()">Refresh Users</button>
+      -->
+      <button class="btn btn-primary" type="button" routerLink="/create">Create a User</button>
+    </div>
+
+    <table class="table m-0 table-sm user-list table-hover">
+
+      <thead>
+      <tr>
+        <th class="text-center">Username</th>
+        <th class="text-center">First Name</th>
+        <th class="text-center">Last Name</th>
+        <th class="text-center">Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let user of users" (click)="navigateToUser(user)">
+        <td class="text-center">{{ user.username }}</td>
+        <td class="text-center">{{ user.firstName }}</td>
+        <td class="text-center">{{ user.lastName }}</td>
+        <td class="text-center">
+          <div class="btn-group btn-group-sm" role="group">
+            <button (click)="editUser(user); $event.preventDefault()"
+                    type="button" class="btn btn-warning">Edit</button>
+            <button (click)="deleteUser(user); $event.preventDefault()"
+                    type="button" class="btn btn-danger">Delete</button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="users && !users?.length" class="text-center p-5">
+      <h5>No Users Found</h5>
+      <p style="font-size:12px;">There are currently no users in the database.</p>
+    </div>
+  </div>
+</div>
