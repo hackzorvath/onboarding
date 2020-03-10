@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../user.service';
+import { PhoneService } from '../../phone/phone.service';
 import { UserModel } from '../user.model';
 import { PhoneModel } from '../../phone/phone.model';
 
@@ -15,6 +16,7 @@ export class UserComponent implements OnInit {
   phones: PhoneModel[];
 
   constructor(private userService: UserService,
+              private phoneService: PhoneService,
               private route: ActivatedRoute,
               private router: Router) { }
 
@@ -41,6 +43,10 @@ export class UserComponent implements OnInit {
       "(Warning: this action CANNOT be undone)");
 
     if(ans) {
+//       for(phone of this.phones) {
+//         this.phoneService.delete(phone.userId, phone.phoneId).subscribe(data => {});
+//       }
+
       this.userService.delete(this.user.userId).subscribe(data => {});
       this.router.navigate(['/']);
     }

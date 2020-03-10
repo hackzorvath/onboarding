@@ -30,4 +30,20 @@ export class PhoneListComponent implements OnInit {
     this.router.navigateByUrl('/add-phone/' + this.userId);
   }
 
+  editPhone(phone: PhoneModel) {
+    this.router.navigateByUrl('/edit-phone/' + phone.userId + '/' + phone.phoneId);
+  }
+
+  deletePhone(phone: PhoneModel) {
+    var ans = window.confirm(
+      "Are you sure you wish to delete " +
+      phone.phoneNumber + "?\n" +
+      "(Warning: this action CANNOT be undone)");
+
+    if(ans) {
+      this.phoneService.delete(phone.userId, phone.phoneId).subscribe(data => {});
+      document.location.reload();
+    }
+  }
+
 }

@@ -9,6 +9,7 @@ import { UserEditTemplateComponent }  from "./user/edit-template/user-edit-templ
 import { UserComponent }              from "./user/profile/user.component";
 
 import { PhoneCreateComponent }        from "./phone/create/phone-create.component";
+import { PhoneEditComponent }        from "./phone/edit/phone-edit.component";
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'create', component: UserCreateComponent },
   { path: 'edit/:userId', component: UserEditComponent },
   { path: 'add-phone/:userId', component: PhoneCreateComponent },
+  { path: 'edit-phone/:userId/:phoneId', component: PhoneEditComponent },
   { path: 'users/:userId', component: UserComponent },
   { path: 'users2/:userId', component: UserEditTemplateComponent }
 ];
