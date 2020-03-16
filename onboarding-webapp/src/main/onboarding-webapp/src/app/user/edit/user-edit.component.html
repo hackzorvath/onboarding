@@ -14,11 +14,16 @@
       </h5>
       <hr>
 
-      <!-- No need for error checking; if a field is blank, don't update in component -->
       <div class="form-group">
         <label for="username">Username</label>
         <input type="text" class="form-control" id="username" formControlName="username"
-               placeholder="{{ user?.username }}">
+               placeholder="{{ user?.username }}" required>
+        <div *ngIf="username.invalid && (username.dirty || username.touched)"
+             class="alert alert-danger">
+          <div *ngIf="username.errors.required">
+            A username is required.
+          </div>
+        </div>
       </div>
 
         <!-- Inputs for username (above), and first/last name (below) -->
@@ -27,7 +32,13 @@
             <div class="form-group">
               <label for="firstName">First Name</label>
               <input type="text" class="form-control" id="firstName" formControlName="firstName"
-                     placeholder="{{ user?.firstName }}">
+                     placeholder="{{ user?.firstName }}" required>
+              <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+                   class="alert alert-danger">
+                <div *ngIf="firstName.errors.required">
+                  A first name is required.
+                </div>
+              </div>
             </div>
           </div>
 
@@ -35,8 +46,13 @@
             <div class="form-group">
               <label for="lastName">Last Name</label>
               <input type="text" class="form-control" id="lastName" formControlName="lastName"
-                     placeholder="{{ user?.lastName }}">
-
+                     placeholder="{{ user?.lastName }}" required>
+              <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+                   class="alert alert-danger">
+                <div *ngIf="lastName.errors.required">
+                  A last name is required.
+                </div>
+              </div>
             </div>
           </div>
 

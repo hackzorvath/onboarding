@@ -12,11 +12,16 @@
         <div class="form-group">
           <label for="phoneNumber">Phone Number</label>
           <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber"
-                 placeholder="(1)234567890">
-
-          <!--
-          <div *ngIf="errors && errors.username" class="form-alert">{{errors.username}}</div>
-          -->
+                 placeholder="+13065407465" required>
+          <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)"
+               class="alert alert-danger">
+            <div *ngIf="phoneNumber.errors.required">
+              A phone number is required.
+            </div>
+            <div *ngIf="phoneNumber.errors.pattern">
+              A valid phone number must be entered (9-10 digits, i.e. +13065407465)
+            </div>
+          </div>
         </div>
 
         <button type="submit" class="btn btn-block btn-primary" (click)="onSubmit()">Add Phone</button>

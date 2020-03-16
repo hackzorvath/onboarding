@@ -35,7 +35,7 @@ export class PhoneService {
 
   public sendVerificationCode(userId: string, phoneId: string): Observable<PhoneModel> {
     return this.httpClient
-      .post<PhoneModel>(`${BASE_URI}/${userId}/phones/${phoneId}/sendVerificationCode`, null);
+      .post<PhoneModel>(`${BASE_URI}/${userId}/phones/${phoneId}/sendVerificationCode`, {});
   }
 
   public submitVerificationCode(userId: string, phoneId: string, verifCode: string): Observable<PhoneModel> {

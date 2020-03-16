@@ -30,6 +30,10 @@ export class PhoneListComponent implements OnInit {
     this.router.navigateByUrl('/add-phone/' + this.userId);
   }
 
+  verifyPhone(phone: PhoneModel) {
+    this.router.navigateByUrl('/verify/' + phone.userId + "/phones/" + phone.phoneId);
+  }
+
   editPhone(phone: PhoneModel) {
     this.router.navigateByUrl('/edit-phone/' + phone.userId + '/' + phone.phoneId);
   }

@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../user.service";
 
@@ -28,25 +28,10 @@ export class UserEditComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      this.userService.get(params['userId']).subscribe(data => {
-      this.user = data;
-            //this.phones = this.user.phoneList;
+        this.userService.get(params['userId']).subscribe(data => {
+        this.user = data;
       });
     });
-
-    // Print to console the user, first, and last name (remove after testing)
-    this.subscriptions.push(this.formGroup.get('username').valueChanges
-      .pipe(debounceTime(100))
-      .subscribe(un => { console.log("Username: " + un); })
-    );
-    this.subscriptions.push(this.formGroup.get('firstName').valueChanges
-      .pipe(debounceTime(100))
-      .subscribe(fn => { console.log("First Name: " + fn); })
-    );
-    this.subscriptions.push(this.formGroup.get('lastName').valueChanges
-      .pipe(debounceTime(100))
-      .subscribe(ln => { console.log("Last Name: " + ln); })
-    );
   }
 
   ngOnDestroy() {
@@ -54,15 +39,32 @@ export class UserEditComponent implements OnInit, OnDestroy {
   }
 
   save(): void {
-     const valueToSave = {...this.formGroup.value, userId: this.user.userId};
+    if(this.formGroup.valid) {
+      const valueToSave = {...this.formGroup.value,
+        userId: this.user.userId};
 
-     this.userService.update(valueToSave).subscribe(user => {
+      this.userService.update(valueToSave).subscribe(user => {
        this.formGroup.patchValue(user);
-     })
+      })
+
+      this.router.navigateByUrl('/users/' + this.user.userId);
+    }
   }
 
   backToUser() {
     this.router.navigateByUrl('/users/' + this.user.userId);
+  }
+
+  get username() {
+    return this.formGroup.get('username');
+  }
+
+  get firstName() {
+    return this.formGroup.get('firstName');
+  }
+
+  get lastName() {
+    return this.formGroup.get('lastName');
   }
 
   private createFormGroup(): FormGroup {

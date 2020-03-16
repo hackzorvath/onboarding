@@ -15,6 +15,7 @@ import { UserComponent } from './user/profile/user.component';
 import { PhoneCreateComponent } from './phone/create/phone-create.component';
 import { PhoneListComponent } from './phone/list/phone-list.component';
 import { PhoneEditComponent } from './phone/edit/phone-edit.component';
+import { PhoneVerifyComponent } from './phone/verify/phone-verify.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { PhoneEditComponent } from './phone/edit/phone-edit.component';
     UserComponent,
     PhoneCreateComponent,
     PhoneListComponent,
-    PhoneEditComponent
+    PhoneEditComponent,
+    PhoneVerifyComponent
   ],
   imports: [
     BrowserModule,

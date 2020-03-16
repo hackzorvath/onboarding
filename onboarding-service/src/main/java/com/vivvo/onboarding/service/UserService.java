@@ -48,6 +48,12 @@ public class UserService {
 				.orElseThrow(() -> new UserNotFoundException(userId));
 	}
 
+	public UserDto findByUsername(String username) {
+		return userRepository.findByUsername(username)
+				.map(userAssembler::assemble)
+				.orElseThrow(() -> new UserNotFoundException(username));
+	}
+
 	public UserDto create(UserDto dto) {
 		userValidator.validateForCreateAndThrow(dto);
 		User entity = userAssembler.disassemble(dto);

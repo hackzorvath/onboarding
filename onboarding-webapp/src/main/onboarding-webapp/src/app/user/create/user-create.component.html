@@ -1,35 +1,36 @@
-<div [formGroup]="newUserForm">
+<form [formGroup]="newUserForm">
   <div class="card card-shadow p-2">
     <div class="card-body p-4">
-
       <div>
         <h4>Create a New User</h4>
       </div>
-
       <hr>
 
       <div>
         <div class="form-group">
           <label for="username">Username</label>
           <input type="text" class="form-control" id="username" formControlName="username"
-                 placeholder="WubbaLubbaDubDub">
-
-          <!--
-          <div *ngIf="errors && errors.username" class="form-alert">{{errors.username}}</div>
-          -->
+                 placeholder="zhorvath" required>
+          <div *ngIf="username.invalid && (username.dirty || username.touched)"
+               class="alert alert-danger">
+            <div *ngIf="username.errors.required">
+              A username is required.
+            </div>
+          </div>
         </div>
-
+w
         <div class="row">
           <div class="col">
             <div class="form-group">
               <label>First Name</label>
               <input type="text" class="form-control" formControlName="firstName" id="firstName"
-                     placeholder="Rick">
-
-              <!--
-              <div *ngIf="errors && errors.firstName" class="form-alert">{{errors.firstName}}</div>
-              -->
-
+                     placeholder="Zach" required>
+              <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+                   class="alert alert-danger">
+                <div *ngIf="firstName.errors.required">
+                  A first name is required.
+                </div>
+              </div>
             </div>
           </div>
 
@@ -37,43 +38,16 @@
             <div class="form-group">
               <label>Last Name</label>
               <input type="text" class="form-control" formControlName="lastName" id="lastName"
-                     placeholder="Sanchez">
-
-              <!--
-              <div *ngIf="errors && errors.lastName" class="form-alert">{{errors.lastName}}</div>
-              -->
-
+                     placeholder="Horvath" required>
+              <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+                   class="alert alert-danger">
+                <div *ngIf="lastName.errors.required">
+                  A last name is required.
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
-        <!--
-        <div class="form-group">
-          <div formArrayName="phoneList">
-            <label class="mr-auto mb-1">Phone Numbers</label>
-            <div *ngFor="let phone of phoneList.controls; let i=index;" [formGroupName]="i">
-              <label class="control-label align-self-center mb-0 mr-3"><span
-                *ngIf="i==0; then primaryLabel else secondaryLabel"></span></label>
-              <ng-template #primaryLabel>Primary</ng-template>
-              <ng-template #secondaryLabel>Secondary</ng-template>
-              <app-phone-number formControlName="phoneNumber"></app-phone-number>
-            </div>
-            <div *ngIf="errors && errors.phoneNumber" class="form-alert">{{errors.phoneNumber}}</div>
-          </div>
-        </div>
-
-        <div class="mb-4">
-          <button type="button" class="btn btn-sm mr-2  fa-sm btn-light color-text" (click)="addPhone()">
-            <i class="fas fa-plus fa-sm mr-1 color-text" style="opacity:0.8;"></i> Add Phone
-          </button>
-          <span *ngIf="this.phoneList.length > 1">
-            <button type="button" class="btn btn-sm btn-light color-text" (click)="removePhone()">
-              <i class="fas fa-minus mr-2  fa-sm  color-text"></i> Remove Phone
-            </button>
-          </span>
-        </div>
-        -->
-
         <button type="submit" class="btn btn-block btn-primary" (click)="onSubmit()">Save User</button>
       </div>
       <br>
@@ -82,4 +56,4 @@
       </button>
     </div>
   </div>
-</div>
+</form>

@@ -12,14 +12,15 @@ public class OnboardingWebApplication {
         SpringApplication.run(OnboardingWebApplication.class, args);
     }
 
-    // TODOS
-    // validation (red messages below fields)       follow the baeldung tutorial
-    // create (users)                                       tour-of-heroes          (DONE)
-    // link from list page (link from summary to details)   tour-of-heroes          (DONE)
-    // create/update/delete phones                  should be a similar process     (DONE)
-    // delete users (from summary page)             should be a similar process     (DONE)
-    // twilio message verification stuff            still no idea what this is
-
+    // TODO:
+    // validation (red messages below fields)               (DONE)
+    // create (users)                                       (DONE)
+    // link from list page (link from summary to details)   (DONE)
+    // create/update/delete phones                          (DONE)
+    // delete users (from summary page)                     (DONE)
+    // TODO: twilio message verification stuff
+    // TODOs fix bug where editing a user deletes there phones
+    // TODOs (optional): validate so usernames are unique
     // run with npm start
 
     @Bean

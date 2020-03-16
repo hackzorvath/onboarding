@@ -1,0 +1,38 @@
+<div class="card card-shadow">
+  <div class="color-text d-flex">
+    <button (click)="close()" class ="btn btn-link p-0"></button>
+  </div>
+  <div class="text-center">
+    <h4>Verify Phone Number {{ phone?.phoneNumber }}</h4>
+    <button class="btn btn-primary" (click)="sendVerificationCode()">Send Verification Code</button>
+
+    <p class="text-center mb-3" style="font-size:0.9em;">
+      Enter the 4-digit code that was sent to you:</p>
+    <form [formGroup]="phoneVerifyForm" (ngSubmit)="submitVerificationCode()">
+      <div class="input-group">
+        <input name="verificationCode" formControlName="verificationCode"
+               class="form-control" type="num" maxlength="4" mask='0000' required>
+          <button class="btn btn-primary">Submit Code</button>
+      </div>
+      <div *ngIf="verificationCode.invalid && (verificationCode.dirty || verificationCode.touched)"
+           class="alert alert-danger">
+        <br>
+        <div *ngIf="verificationCode.errors.required">
+          Please enter the verification code.
+        </div>
+        <div *ngIf="verificationCode.errors.pattern">
+          Verification codes are 4 digits long.
+        </div>
+      </div>
+    </form>
+    <div class="text-center">
+      <button style="font-size:12px;" (click)="resendVerificationCode()" class="btn btn-link color-primary p-0">
+        Resend Verification Code
+      </button>
+      <br>
+      <button style="font-size:12px;" (click)="returnToUser()" class="btn btn-link color-primary p-0">
+        Return to User
+      </button>
+    </div>
+  </div>
+</div>

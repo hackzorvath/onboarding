@@ -44,17 +44,26 @@ export class UserCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    const valueToSave = {...this.newUserForm.value};
+    if(this.newUserForm.valid) {
+      const valueToSave = {...this.newUserForm.value};
 
-    this.userService.save(valueToSave).subscribe(user => {
-      this.newUserForm.patchValue(user);
-    })
-    this.router.navigate(['/']);
+      this.userService.save(valueToSave).subscribe(user => {
+        this.newUserForm.patchValue(user);
+      })
+      this.router.navigate(['/']);
+    }
+  }
 
-//     err => {
-//           this.errors=err.error;
-//           console.log(this.errors);
-//     }*/);
+  get username() {
+    return this.newUserForm.get('username');
+  }
+
+  get firstName() {
+    return this.newUserForm.get('firstName');
+  }
+
+  get lastName() {
+    return this.newUserForm.get('lastName');
   }
 
   private createFormGroup(): FormGroup {

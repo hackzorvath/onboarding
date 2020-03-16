@@ -13,7 +13,7 @@ public class TwilioSmsTester {
     public static void main(String[] args) {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         Message message = Message.creator(
-                new com.twilio.type.PhoneNumber(MY_PHONE_NUM), // to
+                new com.twilio.type.PhoneNumber(MY_PHONE_NUM),  // to
                 new com.twilio.type.PhoneNumber(MY_TWILIO_NUM), // from
                 "Test").create();
 

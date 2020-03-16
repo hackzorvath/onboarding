@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserModel } from '../../user/user.model'
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../user/user.service';
@@ -30,21 +30,32 @@ export class PhoneCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    const valueToSave = {...this.newPhoneForm.value, userId: this.user.userId};
-    this.phoneService.create(this.user.userId, valueToSave).subscribe(user => {
-      this.newPhoneForm.patchValue(user);
-    })
-    this.returnToUser();
+    if(this.newPhoneForm.valid) {
+      const valueToSave = {...this.newPhoneForm.value, userId: this.user.userId};
+      this.phoneService.create(this.user.userId, valueToSave).subscribe(user => {
+        this.newPhoneForm.patchValue(user);
+      })
+      this.returnToUser();
+    }
   }
 
   returnToUser() {
     this.router.navigateByUrl('/users/' + this.user.userId);
   }
 
+  get phoneNumber() {
+    return this.newPhoneForm.get('phoneNumber');
+  }
+
   private createFormGroup(): FormGroup {
     return this.formBuilder.group({
-      'phoneNumber':'',
-      'verified':'false'
+      'phoneNumber': [
+        '', [
+        Validators.required,
+        Validators.pattern(new RegExp('^\\+[1-9]\\d{9,10}$'))
+        ]
+      ],
+      'verified':false
     });
   }
 

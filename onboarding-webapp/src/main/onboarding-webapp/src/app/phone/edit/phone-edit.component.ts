@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { UserModel } from '../../user/user.model'
-import { PhoneModel } from '../phone.model'
-import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../../user/user.service';
-import { PhoneService } from '../phone.service';
-import {Subscription} from "rxjs";
+import { Component, OnInit }        from '@angular/core';
+import { FormBuilder, FormGroup,
+          Validators }              from '@angular/forms';
+import { UserModel }                from '../../user/user.model';
+import { PhoneModel }               from '../phone.model';
+import { ActivatedRoute, Router }   from '@angular/router';
+import { UserService }              from '../../user/user.service';
+import { PhoneService }             from '../phone.service';
+import {Subscription}               from "rxjs";
 
 @Component({
   selector: 'app-phone-edit',
@@ -25,12 +26,15 @@ export class PhoneEditComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private router: Router) { }
 
+  get phoneNumber() {
+    return this.formGroup.get('phoneNumber');
+  }
+
   ngOnInit(): void {
 
     this.activatedRoute.params.subscribe(params => {
       this.phoneService.get(params['userId'], params['phoneId']).subscribe(data => {
         this.phone = data;
-        console.log("phone", data)
       });
     });
     this.activatedRoute.params.subscribe(params => {
@@ -41,12 +45,14 @@ export class PhoneEditComponent implements OnInit {
   }
 
   save() {
-     const valueToSave = {...this.phone, ...this.formGroup.getRawValue()}
-     this.phoneService.update(this.user.userId, valueToSave).subscribe(phone => {
+    if(this.formGroup.valid) {
+      const valueToSave = {...this.phone, ...this.formGroup.getRawValue()}
+      this.phoneService.update(this.user.userId, valueToSave).subscribe(phone => {
        this.formGroup.patchValue(phone);
-     });
+      });
 
-     this.returnToUser();
+      this.returnToUser();
+    }
   }
 
   returnToUser() {
@@ -55,7 +61,12 @@ export class PhoneEditComponent implements OnInit {
 
   private createFormGroup(): FormGroup {
     return this.formBuilder.group({
-      'phoneNumber':'',
+      'phoneNumber': [
+        '', [
+        Validators.required,
+        Validators.pattern(new RegExp('^\\+[1-9]\\d{9,10}$'))
+        ]
+      ],
       'verified':false
     });
   }

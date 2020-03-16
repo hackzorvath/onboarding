@@ -31,6 +31,11 @@ public class UserController {
 		return userService.get(userId);
 	}
 
+	@GetMapping(params = "username")
+	public UserDto findByUsername(@RequestParam("username") String username) {
+		return userService.findByUsername(username);
+	}
+
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public UserDto create(@RequestBody UserDto dto) {

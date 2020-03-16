@@ -23,6 +23,10 @@
       </td>
       <td class="text-center">
         <div class="btn-group btn-group-sm" role="group">
+          <div *ngIf="!phone.verified">
+            <button (click)="verifyPhone(phone)"
+                    type="button" class="btn btn-primary">Verify</button>
+          </div>
           <button (click)="editPhone(phone)"
                   type="button" class="btn btn-warning">Edit</button>
           <button (click)="deletePhone(phone)"
@@ -38,3 +42,5 @@
     <p style="font-size:12px;">There are currently no phones for this user.</p>
   </div>
 </div>
+
+

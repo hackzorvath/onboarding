@@ -10,12 +10,20 @@
       </h5>
       <hr>
 
-      <!-- No need for error checking; if a field is blank, don't update in component -->
       <div class="form-group">
         <label for="phoneNumber">Phone Number</label>
-        <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber"
-               placeholder="{{ phone?.phoneNumber }}">
-      </div>
+        <input type="text" class="form-control" id="phoneNumber"
+               formControlName="phoneNumber"
+               placeholder="{{ phone?.phoneNumber }}" required>
+        <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)"
+             class="alert alert-danger">
+          <div *ngIf="phoneNumber.errors.required">
+            A phone number is required.
+          </div>
+          <div *ngIf="phoneNumber.errors.pattern">
+            A valid phone number must be entered (9-10 digits, i.e. +13065407465)
+          </div>
+        </div>
 
       <div>
         <hr>

@@ -101,21 +101,12 @@ public class PhoneService {
         PhoneDto phoneDto = get(userId, phoneId);
 
         SecureRandom secureRandom = new SecureRandom();
-        int randomNumber = secureRandom.nextInt(899999) + 100000;
+        int randomNumber = secureRandom.nextInt(8999) + 1000;
         String verificationCode = String.valueOf(randomNumber);
 
         try {
-            /* Using custom codes with Twilio's Verify API must be enabled by contacting
-             *  their sales dept. Boo.
-             *
-             * Verification verification = Verification.creator(
-                    "VA7d8bb863fb7ba37e0f9ed3fc67fd2643",
-                    phoneDto.getPhoneNumber(),
-                    "sms")
-                    .setCustomCode(verificationCode).create();*/
-
-            Message.creator(new com.twilio.type.PhoneNumber(phoneDto.getPhoneNumber()), // to
-                    new com.twilio.type.PhoneNumber("+13069880988"), // from
+            Message.creator(new com.twilio.type.PhoneNumber(phoneDto.getPhoneNumber()), // TO
+                    new com.twilio.type.PhoneNumber("+13235913638"),                    // FROM
                     "Your verification code: " + verificationCode).create();
 
             phoneDto.setVerificationCode(verificationCode);
@@ -130,24 +121,6 @@ public class PhoneService {
         if (phoneDto.getVerified()) {
             return phoneDto;
         }
-
-        /* Using custom codes with Twilio's Verify API must be enabled by contacting
-         *  their sales dept. Boo.
-         *
-         * VerificationCheck verificationCheck = VerificationCheck.creator(
-                "VA7d8bb863fb7ba37e0f9ed3fc67fd2643", verificationCode)
-                .setVerificationSid(phoneDto.getVerificationSid()).create();
-
-        if(verificationCheck.getStatus().equals("approved")) {
-            return update(userId, phoneDto
-                    .setVerified(true)
-                    .setVerificationSid(null));
-        }
-        else {
-            Map<String, String> verificationErrors = new LinkedHashMap<>();
-            verificationErrors.put(phoneDto.getVerificationSid(), WRONG_VERIFICATION_CODE);
-            throw new ValidationException(verificationErrors);
-        }*/
 
         if (phoneDto.getVerificationCode() != null && phoneDto.getVerificationCode().equals(attemptCode)) {
             return update(userId, phoneDto

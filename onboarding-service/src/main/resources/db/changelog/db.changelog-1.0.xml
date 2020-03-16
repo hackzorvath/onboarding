@@ -4,7 +4,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
 
-    <changeSet author="doddt2" id="create-user-table">
+    <changeSet author="zhorvath" id="create-user-table">
         <createTable tableName="usr">
             <column name="usr_id" type="varchar(36)">
                 <constraints nullable="false" primaryKey="true"/>
@@ -18,13 +18,13 @@
         </createTable>
     </changeSet>
 
-    <changeSet author="doddt2" id="add-username-column">
+    <changeSet author="zhorvath" id="add-username-column">
         <addColumn tableName="usr">
             <column name="username" type="varchar(50)"/>
         </addColumn>
     </changeSet>
 
-    <changeSet author="nguyenk" id="create-phone-table">
+    <changeSet author="zhorvath" id="create-phone-table">
         <createTable tableName="phone">
             <column name="phone_id" type="varchar(36)">
                 <constraints nullable="false" primaryKey="true"/>
@@ -36,7 +36,7 @@
         </createTable>
     </changeSet>
 
-    <changeSet author="nguyenk" id="addForeignKeyConstraint-phone">
+    <changeSet author="zhorvath" id="addForeignKeyConstraint-phone">
         <addForeignKeyConstraint
                 baseTableName="phone"
                 baseColumnNames="usr_id"
@@ -45,7 +45,7 @@
                 referencedColumnNames="usr_id"/>
     </changeSet>
 
-    <changeSet author="nguyenk" id="addVerification-phone">
+    <changeSet author="zhorvath" id="addVerification-phone">
         <addColumn tableName="phone">
             <column name="verified" type="Boolean"/>
             <column name="verification_code" type="varchar(6)"/>
